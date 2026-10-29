@@ -1,0 +1,6 @@
+{
+  "name": "SiteSight AI — Construction Progress Monitoring",
+  "description": "Intelligent construction progress monitoring platform turning site photographs into construction-stage insights, visual comparisons, and actionable reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
