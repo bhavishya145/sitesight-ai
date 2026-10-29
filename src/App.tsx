@@ -25,6 +25,13 @@ import type {
   ConstructionStage,
 } from './types/index.ts';
 
+import {
+  INITIAL_PROJECTS,
+  INITIAL_IMAGES,
+  INITIAL_ALERTS,
+  INITIAL_REPORTS,
+} from './data/seedData.ts';
+
 export default function App() {
   // Navigation / View state
   const [currentView, setCurrentView] = useState<'landing' | 'app'>('landing');
@@ -46,13 +53,15 @@ export default function App() {
     },
   });
 
-  // App data state
-  const [projects, setProjects] = useState<ConstructionProject[]>([]);
-  const [selectedProject, setSelectedProject] = useState<ConstructionProject | null>(null);
-  const [images, setImages] = useState<SiteImage[]>([]);
-  const [alerts, setAlerts] = useState<SystemAlert[]>([]);
-  const [reports, setReports] = useState<MonitoringReport[]>([]);
-  const [loading, setLoading] = useState(true);
+  // App data state with rich fallback seed data
+  const [projects, setProjects] = useState<ConstructionProject[]>(INITIAL_PROJECTS);
+  const [selectedProject, setSelectedProject] = useState<ConstructionProject>(INITIAL_PROJECTS[0]);
+  const [images, setImages] = useState<SiteImage[]>(
+    INITIAL_IMAGES.filter((img) => img.projectId === INITIAL_PROJECTS[0].id)
+  );
+  const [alerts, setAlerts] = useState<SystemAlert[]>(INITIAL_ALERTS);
+  const [reports, setReports] = useState<MonitoringReport[]>(INITIAL_REPORTS);
+  const [loading, setLoading] = useState(false);
 
   // Initial Data Fetch
   useEffect(() => {
